@@ -252,9 +252,7 @@ export default class Footer extends Vue {
         }
       }
 
-      img.sponsor-logo {
-        width: 120px;
-      }
+     
     }
   }
 
