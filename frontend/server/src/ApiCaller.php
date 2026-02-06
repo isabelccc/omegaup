@@ -344,6 +344,15 @@ class ApiCaller {
                 )
             );
         }
+        if ($apiException->getCode() == 429) {
+            header('HTTP/1.1 429 Too Many Requests');
+            header('Content-Type: application/json');
+            die(
+                json_encode(
+                    $apiException->asResponseArray()
+                )
+            );
+        }
         header('HTTP/1.1 500 Internal Server Error');
         /** @psalm-suppress MixedArgument OMEGAUP_ROOT is really a string... */
         die(

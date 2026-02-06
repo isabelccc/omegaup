@@ -2685,6 +2685,9 @@ class Contest extends \OmegaUp\Controllers\Controller {
         // Authenticate user
         $r->ensureMainUserIdentityIsOver13();
 
+        // Check rate limit for contest creation
+        \OmegaUp\RateLimiter::checkRateLimit($r->user->user_id, 'contest');
+
         // Validate request
         self::validateCreate($r, $r->identity);
 

@@ -863,6 +863,7 @@ class Course extends \OmegaUp\Controllers\Controller {
         $r->ensureMainUserIdentityIsOver13();
         $courseParams = self::convertRequestToCourseParams($r);
 
+        \OmegaUp\RateLimiter::checkRateLimit($r->user->user_id, 'course');
         if (is_null($courseParams->schoolId)) {
             $school = null;
         } else {

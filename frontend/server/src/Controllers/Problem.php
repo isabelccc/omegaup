@@ -458,6 +458,7 @@ class Problem extends \OmegaUp\Controllers\Controller {
     public static function apiCreate(\OmegaUp\Request $r): array {
         $r->ensureMainUserIdentityIsOver13();
 
+        \OmegaUp\RateLimiter::checkRateLimit($r->user->user_id, 'problem');
         self::createProblem(
             $r->user,
             $r->identity,
